@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5C3317" />
+  <title>Garfe Coffee | Premium Ethiopian Coffee Since 1930</title>
+  <meta name="description" content="Garfe Coffee is a proudly Ethiopian coffee company with roots stretching back nearly a century. Discover hand-selected beans from Gera and Yirgacheffe regions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f5f0e8;
+      --fg: #1c1714;
+      --card: #ede7db;
+      --card-fg: #1c1714;
+      --primary: #5c3317;
+      --primary-fg: #f5f0e8;
+      --secondary: #e2d9c8;
+      --secondary-fg: #2a2018;
+      --muted: #e6ddd0;
+      --muted-fg: #706358;
+      --accent: #b5651d;
+      --accent-fg: #f5f0e8;
+      --border: #cec3b0;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .text-balance {
+      text-wrap: balance;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.3em;
+    }
+
+    .tracking-wider {
+      letter-spacing: 0.1em;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .navbar__brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .navbar__brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+    }
+
+    .navbar__brand-sub {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted-fg);
+    }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .navbar__link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+      transition: color 0.2s;
+    }
+
+    .navbar__link:hover,
+    .navbar__link--active {
+      color: var(--accent);
+    }
+
+    .navbar__link--active {
+      font-weight: 600;
+    }
+
+    .navbar__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .navbar__cta:hover {
+      opacity: 0.9;
+    }
+
+    .navbar__mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--fg);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .navbar__mobile-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .navbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar__links,
+      .navbar__actions {
+        display: none;
+      }
+      .navbar__mobile-toggle {
+        display: block;
+      }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 23, 20, 0.65);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 10;
+      padding: 160px 24px 128px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero__content-inner {
+      max-width: 640px;
+    }
+
+    .hero__subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(245, 240, 232, 0.7);
+      margin-bottom: 24px;
+    }
+
+    .hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--bg);
+      text-wrap: balance;
+    }
+
+    .hero__desc {
+      margin-top: 24px;
+      max-width: 480px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.8);
+    }
+
+    .hero__buttons {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, background 0.2s;
+      font-family: var(--font-sans);
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--accent-fg);
+    }
+
+    .btn--primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn--outline-light {
+      background: transparent;
+      color: var(--bg);
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .btn--outline-light:hover {
+      background: rgba(245, 240, 232, 0.1);
+    }
+
+    .btn--dark {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
+
+    .btn--dark:hover {
+      opacity: 0.9;
+    }
+
+    .hero__bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      border-top: 1px solid rgba(245, 240, 232, 0.1);
+      background: rgba(28, 23, 20, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+
+    .hero__bar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero__bar-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(245, 240, 232, 0.5);
+    }
+
+    .hero__bar-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--bg);
+    }
+
+    /* ========== SECTION HEADINGS ========== */
+    .section {
+      padding: 96px 0;
+    }
+
+    .section--secondary {
+      background: var(--secondary);
+    }
+
+    .section--primary {
+      background: var(--primary);
+      color: var(--primary-fg);
+    }
+
+    .section__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--muted-fg);
+      margin-bottom: 12px;
+    }
+
+    .section__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--fg);
+      text-wrap: balance;
+    }
+
+    .section__header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .section__header--center {
+      text-align: center;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      transition: opacity 0.2s;
+    }
+
+    .section__link:hover {
+      opacity: 0.8;
+    }
+
+    /* ========== FEATURED PRODUCTS ========== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-card__image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--secondary);
+    }
+
+    .product-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .product-card:hover .product-card__image img {
+      transform: scale(1.05);
+    }
+
+    .product-card__tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(28, 23, 20, 0.9);
+      color: var(--bg);
+      padding: 4px 12px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .product-card__info {
+      margin-top: 20px;
+    }
+
+    .product-card__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .product-card__price {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .product-card__desc {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    /* ========== HERITAGE ========== */
+    .heritage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .heritage-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .heritage__image {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .heritage__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .heritage__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--muted-fg);
+      margin-bottom: 16px;
+    }
+
+    .heritage__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--fg);
+      text-wrap: balance;
+    }
+
+    .heritage__text {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .heritage__text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    .heritage__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .heritage__stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .heritage__stat-label {
+      margin-top: 4px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-fg);
+    }
+
+    /* ========== WHY GARFE ========== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 32px;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover {
+      background: var(--secondary);
+    }
+
+    .feature-card__icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: var(--primary-fg);
+      margin-bottom: 24px;
+    }
+
+    .feature-card__icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .feature-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--card-fg);
+      margin-bottom: 12px;
+    }
+
+    .feature-card__desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta {
+      position: relative;
+      padding: 128px 0;
+      overflow: hidden;
+    }
+
+    .cta__bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .cta__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cta__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 23, 20, 0.75);
+    }
+
+    .cta__content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .cta__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(245, 240, 232, 0.6);
+      margin-bottom: 16px;
+    }
+
+    .cta__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--bg);
+      text-wrap: balance;
+    }
+
+    .cta__desc {
+      margin: 24px auto 0;
+      max-width: 560px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.8);
+    }
+
+    .cta__buttons {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* ========== ABOUT PAGE SECTIONS ========== */
+    .about-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .about-hero__bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .about-hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 23, 20, 0.6);
+    }
+
+    .about-hero__content {
+      position: relative;
+      z-index: 10;
+      padding: 160px 24px 96px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .about-hero__label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(245, 240, 232, 0.6);
+      margin-bottom: 16px;
+    }
+
+    .about-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--bg);
+      text-wrap: balance;
+    }
+
+    .about-hero__desc {
+      margin-top: 24px;
+      max-width: 560px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.8);
+    }
+
+    /* Mission Grid */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .mission-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mission__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--fg);
+      text-wrap: balance;
+    }
+
+    .mission__text {
+      margin-top: 32px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    .mission__list {
+      margin-top: 32px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mission__list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--fg);
+    }
+
+    .mission__list-icon {
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .mission__image {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .mission__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Timeline */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1024px) {
+      .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .timeline-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 32px;
+    }
+
+    .timeline-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .timeline-card__number {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 50%;
+    }
+
+    .timeline-card__year {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .timeline-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--card-fg);
+      margin-bottom: 8px;
+    }
+
+    .timeline-card__desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1024px) {
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .value-card {
+      text-align: center;
+    }
+
+    .value-card__icon {
+      width: 64px;
+      height: 64px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--secondary);
+      border-radius: 50%;
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+
+    .value-card__icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .value-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 8px;
+    }
+
+    .value-card__desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    /* Heritage Quote */
+    .quote-section {
+      background: var(--primary);
+      padding: 96px 24px;
+      text-align: center;
+    }
+
+    .quote-section blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--primary-fg);
+      max-width: 720px;
+      margin: 0 auto;
+      text-wrap: balance;
+    }
+
+    .quote-section__author {
+      margin-top: 32px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(245, 240, 232, 0.6);
+    }
+
+    /* ========== SHOP PAGE ========== */
+    .shop-hero {
+      background: var(--secondary);
+      padding: 128px 24px 48px;
+      text-align: center;
+    }
+
+    .shop-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .shop-hero__desc {
+      margin-top: 16px;
+      font-size: 1rem;
+      color: var(--muted-fg);
+    }
+
+    .shop-filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .shop-filter-btn {
+      padding: 10px 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.2s;
+    }
+
+    .shop-filter-btn--active {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-color: var(--primary);
+    }
+
+    .shop-count {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--muted-fg);
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1024px) {
+      .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shop-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .shop-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .shop-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .shop-card__image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--secondary);
+    }
+
+    .shop-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .shop-card:hover .shop-card__image img {
+      transform: scale(1.05);
+    }
+
+    .shop-card__tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(28, 23, 20, 0.9);
+      color: var(--bg);
+      padding: 4px 12px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .shop-card__body {
+      padding: 24px;
+    }
+
+    .shop-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .shop-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--card-fg);
+    }
+
+    .shop-card__price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .shop-card__desc {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .shop-card__meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .shop-card__badge {
+      background: var(--secondary);
+      color: var(--secondary-fg);
+      padding: 4px 8px;
+      font-size: 0.7rem;
+    }
+
+    .shop-card__footer {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .shop-card__rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .shop-card__rating-count {
+      font-size: 0.75rem;
+      color: var(--muted-fg);
+    }
+
+    .shop-card__add {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: opacity 0.2s;
+    }
+
+    .shop-card__add:hover {
+      opacity: 0.9;
+    }
+
+    /* ========== CONTACT PAGE ========== */
+    .contact-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--primary);
+    }
+
+    .contact-hero__content {
+      position: relative;
+      z-index: 10;
+      padding: 160px 24px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .contact-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--primary-fg);
+    }
+
+    .contact-hero__desc {
+      margin-top: 16px;
+      max-width: 480px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.7);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-form h2,
+    .contact-info h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 8px;
+    }
+
+    .contact-form p,
+    .contact-info > p {
+      font-size: 0.85rem;
+      color: var(--muted-fg);
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 0.9rem;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: none;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: opacity 0.2s;
+    }
+
+    .form-submit:hover {
+      opacity: 0.9;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+    }
+
+    .contact-info-item__icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--secondary);
+      color: var(--accent);
+    }
+
+    .contact-info-item__icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .contact-info-item h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+    }
+
+    .contact-info-item p {
+      margin-top: 4px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--muted-fg);
+    }
+
+    .contact-map {
+      margin-top: 48px;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .contact-map__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-top: 12px;
+    }
+
+    .contact-map__sub {
+      margin-top: 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-fg);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--fg);
+      color: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .footer__brand-desc {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      opacity: 0.7;
+    }
+
+    .footer__heading {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.5;
+      margin-bottom: 16px;
+    }
+
+    .footer__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer__list li,
+    .footer__list a {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .footer__list a:hover {
+      opacity: 1;
+    }
+
+    .footer__list-icon {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer__list-icon svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .footer__bottom {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(245, 240, 232, 0.1);
+      text-align: center;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+
+    /* ========== PAGE NAVIGATION (for single HTML) ========== */
+    .page-nav {
+      display: none;
+    }
+
+    /* Utility: hidden by default, shown with JS */
+    [data-page] {
+      display: none;
+    }
+
+    [data-page].active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar" role="banner">
+    <nav class="navbar__inner" aria-label="Main navigation">
+      <a href="#" class="navbar__brand" onclick="showPage('home'); return false;">
+        <span class="navbar__brand-name">GARFE</span>
+        <span class="navbar__brand-sub">Coffee</span>
+      </a>
+
+      <ul class="navbar__links">
+        <li><a href="#" class="navbar__link navbar__link--active" data-nav="home" onclick="showPage('home'); return false;">Home</a></li>
+        <li><a href="#" class="navbar__link" data-nav="about" onclick="showPage('about'); return false;">About</a></li>
+        <li><a href="#" class="navbar__link" data-nav="shop" onclick="showPage('shop'); return false;">Shop</a></li>
+        <li><a href="#" class="navbar__link" data-nav="contact" onclick="showPage('contact'); return false;">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="#" class="navbar__cta" onclick="showPage('shop'); return false;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Shop Now
+        </a>
+      </div>
+
+      <button class="navbar__mobile-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+
+  <!-- ==================== HOME PAGE ==================== -->
+  <div data-page="home" class="active">
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__bg">
+          <img src="/images/hero-coffee.jpg" alt="Ethiopian coffee ceremony setup with traditional jebena and freshly roasted beans" />
+          <div class="hero__overlay"></div>
+        </div>
+        <div class="hero__content">
+          <div class="hero__content-inner">
+            <p class="hero__subtitle">Established 1930 E.C.</p>
+            <h1 class="hero__title">Exceptional Coffee, Rooted in Heritage</h1>
+            <p class="hero__desc">From the highlands of Ethiopia to your cup. Nearly a century of passion, tradition, and the finest hand-selected beans.</p>
+            <div class="hero__buttons">
+              <a href="#" class="btn btn--primary" onclick="showPage('shop'); return false;">Explore Our Coffee &rarr;</a>
+              <a href="#" class="btn btn--outline-light" onclick="showPage('about'); return false;">Our Story</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero__bar">
+          <div class="hero__bar-inner">
+            <div class="hero__bar-item">
+              <span class="hero__bar-label">Origin</span>
+              <span class="hero__bar-value">Gera &amp; Yirgacheffe</span>
+            </div>
+            <div class="hero__bar-item">
+              <span class="hero__bar-label">Heritage</span>
+              <span class="hero__bar-value">Nearly 100 Years</span>
+            </div>
+            <div class="hero__bar-item">
+              <span class="hero__bar-label">Approach</span>
+              <span class="hero__bar-value">Direct Trade</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header">
+            <div>
+              <p class="section__label">Our Collection</p>
+              <h2 class="section__title">Featured Coffee</h2>
+            </div>
+            <a href="#" class="section__link" onclick="showPage('shop'); return false;">View All &rarr;</a>
+          </div>
+          <div class="products-grid">
+            <a href="#" class="product-card" onclick="showPage('shop'); return false;">
+              <div class="product-card__image">
+                <img src="/images/product-yirgacheffe.jpg" alt="Yirgacheffe Select coffee" />
+                <span class="product-card__tag">Best Seller</span>
+              </div>
+              <div class="product-card__info">
+                <div class="product-card__row">
+                  <h3 class="product-card__name">Yirgacheffe Select</h3>
+                  <span class="product-card__price">850 ETB</span>
+                </div>
+                <p class="product-card__desc">Bright, floral, and citrusy with a clean finish</p>
+              </div>
+            </a>
+            <a href="#" class="product-card" onclick="showPage('shop'); return false;">
+              <div class="product-card__image">
+                <img src="/images/Gera Highland coffe.png" alt="Gera Highland coffee" />
+                <span class="product-card__tag">Single Origin</span>
+              </div>
+              <div class="product-card__info">
+                <div class="product-card__row">
+                  <h3 class="product-card__name">Gera Highland</h3>
+                  <span class="product-card__price">780 ETB</span>
+                </div>
+                <p class="product-card__desc">Rich body with notes of chocolate and wild berries</p>
+              </div>
+            </a>
+            <a href="#" class="product-card" onclick="showPage('shop'); return false;">
+              <div class="product-card__image">
+                <img src="/images/Heritage Blend coffee.jpg" alt="Heritage Blend coffee" />
+                <span class="product-card__tag">Signature</span>
+              </div>
+              <div class="product-card__info">
+                <div class="product-card__row">
+                  <h3 class="product-card__name">Heritage Blend</h3>
+                  <span class="product-card__price">720 ETB</span>
+                </div>
+                <p class="product-card__desc">Our signature blend combining Gera and Yirgacheffe beans</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Heritage -->
+      <section class="section section--secondary">
+        <div class="container">
+          <div class="heritage-grid">
+            <div class="heritage__image">
+              <img src="/images/about.jpg" alt="Ethiopian coffee farm in the Yirgacheffe region at golden hour" />
+            </div>
+            <div>
+              <p class="heritage__label">Our Heritage</p>
+              <h2 class="heritage__title">A Legacy Nearly a Century in the Making</h2>
+              <div class="heritage__text">
+                <p>Our story began in 1930 E.C., when our grandparents cultivated and traded coffee as a family tradition. Passed down through generations, this passion for coffee grew stronger when our father began selling Yirgacheffe coffee beans in Addis Ababa.</p>
+                <p>Building on this legacy, Garfe Coffee Company was officially established in 2008 E.C. Today, we serve the Ethiopian market with a deep commitment to quality, heritage, and sustainability.</p>
+              </div>
+              <div class="heritage__stats">
+                <div>
+                  <div class="heritage__stat-number">90+</div>
+                  <div class="heritage__stat-label">Years of Heritage</div>
+                </div>
+                <div>
+                  <div class="heritage__stat-number">2</div>
+                  <div class="heritage__stat-label">Coffee Regions</div>
+                </div>
+                <div>
+                  <div class="heritage__stat-number">3</div>
+                  <div class="heritage__stat-label">Generations</div>
+                </div>
+              </div>
+              <div style="margin-top: 40px;">
+                <a href="#" class="section__link" onclick="showPage('about'); return false;">Read Our Full Story &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Garfe -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__label">Why Choose Us</p>
+            <h2 class="section__title">Why Garfe Coffee</h2>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <h3 class="feature-card__title">Nearly 100 Years of Heritage</h3>
+              <p class="feature-card__desc">Our family has been cultivating and trading Ethiopian coffee since 1930 E.C., passed down through three generations.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              </div>
+              <h3 class="feature-card__title">Direct Farmer Relationships</h3>
+              <p class="feature-card__desc">We work directly with smallholder farmers in the Gera region, ensuring fair compensation and sustainable practices.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2 2 4.5c.4 2-.5 4-2 5.5"/><path d="M11.7 13.2c.2-1.5 1.2-2.8 2.6-3.4"/></svg>
+              </div>
+              <h3 class="feature-card__title">Sustainable Farming</h3>
+              <p class="feature-card__desc">Our commitment to sustainability means ethical sourcing from farm to cup, preserving the land for future generations.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              </div>
+              <h3 class="feature-card__title">Quality at Every Stage</h3>
+              <p class="feature-card__desc">Hand-selected, carefully processed beans with quality control at every stage from harvest to your cup.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div class="cta__bg">
+          <img src="/images/coffee-beans-close.jpg" alt="Close-up of premium roasted coffee beans" />
+          <div class="cta__overlay"></div>
+        </div>
+        <div class="cta__content">
+          <p class="cta__label">Experience the Taste</p>
+          <h2 class="cta__title">Ready to Taste Ethiopia's Finest?</h2>
+          <p class="cta__desc">Discover the rich flavors that have been cherished for generations. From Gera's highlands to your cup.</p>
+          <div class="cta__buttons">
+            <a href="#" class="btn btn--primary" onclick="showPage('shop'); return false;">Shop Coffee &rarr;</a>
+            <a href="#" class="btn btn--outline-light" onclick="showPage('contact'); return false;">Get in Touch</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ==================== ABOUT PAGE ==================== -->
+  <div data-page="about">
+    <main>
+      <!-- About Hero -->
+      <section class="about-hero">
+        <div class="about-hero__bg">
+          <img src="/images/about1.jpg" alt="Ethiopian coffee farm landscape in the Gera region" />
+          <div class="about-hero__overlay"></div>
+        </div>
+        <div class="about-hero__content">
+          <p class="about-hero__label">Our Story</p>
+          <h1 class="about-hero__title">About Garfe Coffee</h1>
+          <p class="about-hero__desc">A proudly Ethiopian coffee company with roots that stretch back nearly a century.</p>
+        </div>
+      </section>
+
+      <!-- Mission -->
+      <section class="section">
+        <div class="container">
+          <div class="mission-grid">
+            <div>
+              <p class="section__label">Our Mission</p>
+              <h2 class="mission__title">Bringing the Finest Ethiopian Coffee to Discerning Palates</h2>
+              <p class="mission__text">At Garfe Coffee, our mission is simple yet profound: to bring the world's finest Ethiopian coffee to discerning palates while creating sustainable livelihoods for the farmers who grow it.</p>
+              <p class="mission__text">Exceptional coffee begins with exceptional farming. We work directly with smallholder farmers in the Gera region of Ethiopia, one of the historic birthplaces of coffee cultivation, dating back over a thousand years.</p>
+              <ul class="mission__list">
+                <li>
+                  <svg class="mission__list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Fair and transparent compensation
+                </li>
+                <li>
+                  <svg class="mission__list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Sustainable farming practices
+                </li>
+                <li>
+                  <svg class="mission__list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Consistent, high-quality coffee beans
+                </li>
+                <li>
+                  <svg class="mission__list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Ethical sourcing from farm to cup
+                </li>
+              </ul>
+            </div>
+            <div class="mission__image">
+              <img src="/images/cofee.jpg" alt="Coffee heritage in Ethiopia" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="section section--secondary">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__label">Our Journey</p>
+            <h2 class="section__title">A Legacy Through Time</h2>
+          </div>
+          <div class="timeline-grid">
+            <div class="timeline-card">
+              <div class="timeline-card__header">
+                <span class="timeline-card__number">1</span>
+                <span class="timeline-card__year">1930 E.C.</span>
+              </div>
+              <h3 class="timeline-card__title">The Beginning</h3>
+              <p class="timeline-card__desc">Our grandparents began cultivating and trading coffee as a family tradition in the Ethiopian highlands.</p>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card__header">
+                <span class="timeline-card__number">2</span>
+                <span class="timeline-card__year">1960s E.C.</span>
+              </div>
+              <h3 class="timeline-card__title">Growing Roots</h3>
+              <p class="timeline-card__desc">Our father expanded the family legacy by selling Yirgacheffe coffee beans in Addis Ababa, bringing highland coffee to the city.</p>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card__header">
+                <span class="timeline-card__number">3</span>
+                <span class="timeline-card__year">2008 E.C.</span>
+              </div>
+              <h3 class="timeline-card__title">Garfe Coffee Founded</h3>
+              <p class="timeline-card__desc">Building on generations of knowledge, Garfe Coffee Company was officially established to serve the Ethiopian market.</p>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card__header">
+                <span class="timeline-card__number">4</span>
+                <span class="timeline-card__year">Today</span>
+              </div>
+              <h3 class="timeline-card__title">Brewing the Future</h3>
+              <p class="timeline-card__desc">We continue to honor our heritage while innovating and expanding, committed to quality, sustainability, and authentic Ethiopian coffee.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <p class="section__label">What We Believe</p>
+            <h2 class="section__title">Our Core Values</h2>
+          </div>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+              </div>
+              <h3 class="value-card__title">Quality Focus</h3>
+              <p class="value-card__desc">Hand-selected, carefully processed beans at every stage.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="value-card__title">Direct Trade</h3>
+              <p class="value-card__desc">Fair and transparent compensation for our farming partners.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2 2 4.5c.4 2-.5 4-2 5.5"/><path d="M11.7 13.2c.2-1.5 1.2-2.8 2.6-3.4"/></svg>
+              </div>
+              <h3 class="value-card__title">Sustainability</h3>
+              <p class="value-card__desc">Sustainable farming practices preserving land for generations.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3 class="value-card__title">Authentic Origins</h3>
+              <p class="value-card__desc">Proudly sourced from Gera and Yirgacheffe regions of Ethiopia.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Heritage Quote -->
+      <section class="quote-section">
+        <blockquote>&ldquo;Coffee is not just our business; it is our inheritance. From farm knowledge passed through generations to modern market practices, Garfe Coffee blends tradition and innovation.&rdquo;</blockquote>
+        <p class="quote-section__author">The Garfe Family</p>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ==================== SHOP PAGE ==================== -->
+  <div data-page="shop">
+    <main>
+      <!-- Shop Hero -->
+      <div class="shop-hero">
+        <h1 class="shop-hero__title">Our Coffee</h1>
+        <p class="shop-hero__desc">Hand-selected beans from Ethiopia's finest growing regions</p>
+      </div>
+
+      <!-- Shop Grid -->
+      <section class="section">
+        <div class="container">
+          <div class="shop-filters">
+            <button class="shop-filter-btn shop-filter-btn--active" data-filter="all" onclick="filterProducts('all')">All Coffee</button>
+            <button class="shop-filter-btn" data-filter="single-origin" onclick="filterProducts('single-origin')">Single Origin</button>
+            <button class="shop-filter-btn" data-filter="blend" onclick="filterProducts('blend')">Blends</button>
+            <span class="shop-count" id="product-count">6 products</span>
+          </div>
+
+          <div class="shop-grid" id="shop-grid">
+            <!-- Product 1 -->
+            <div class="shop-card" data-category="single-origin">
+              <div class="shop-card__image">
+                <img src="/images/product-yirgacheffe.jpg" alt="Yirgacheffe Select" />
+                <span class="shop-card__tag">Best Seller</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Yirgacheffe Select</h3>
+                  <span class="shop-card__price">850 ETB</span>
+                </div>
+                <p class="shop-card__desc">Bright and floral with vibrant citrus notes and a clean, tea-like finish. Sourced from the renowned Yirgacheffe region.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Light Roast</span>
+                  <span class="shop-card__badge">Yirgacheffe</span>
+                  <span class="shop-card__badge">250g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.9 <span class="shop-card__rating-count">(128)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="shop-card" data-category="single-origin">
+              <div class="shop-card__image">
+                <img src="/images/product-gera.jpg" alt="Gera Highland" />
+                <span class="shop-card__tag">Single Origin</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Gera Highland</h3>
+                  <span class="shop-card__price">780 ETB</span>
+                </div>
+                <p class="shop-card__desc">Full-bodied with rich chocolate undertones and wild berry sweetness. From the misty highlands of Gera.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Medium Roast</span>
+                  <span class="shop-card__badge">Gera</span>
+                  <span class="shop-card__badge">250g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.8 <span class="shop-card__rating-count">(96)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="shop-card" data-category="blend">
+              <div class="shop-card__image">
+                <img src="/images/product-blend.jpg" alt="Heritage Blend" />
+                <span class="shop-card__tag">Signature</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Heritage Blend</h3>
+                  <span class="shop-card__price">720 ETB</span>
+                </div>
+                <p class="shop-card__desc">Our signature blend marrying the brightness of Yirgacheffe with the depth of Gera beans. Perfectly balanced.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Medium Roast</span>
+                  <span class="shop-card__badge">Blend</span>
+                  <span class="shop-card__badge">250g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.7 <span class="shop-card__rating-count">(204)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="shop-card" data-category="single-origin">
+              <div class="shop-card__image">
+                <img src="/images/product-reserve.jpg" alt="Reserve Dark Roast" />
+                <span class="shop-card__tag">Premium</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Reserve Dark Roast</h3>
+                  <span class="shop-card__price">920 ETB</span>
+                </div>
+                <p class="shop-card__desc">Bold and intense with smoky caramel notes and a velvety finish. For those who prefer a deeper roast.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Dark Roast</span>
+                  <span class="shop-card__badge">Gera</span>
+                  <span class="shop-card__badge">250g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.9 <span class="shop-card__rating-count">(73)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="shop-card" data-category="blend">
+              <div class="shop-card__image">
+                <img src="/images/product-yirgacheffe.jpg" alt="Morning Ritual" />
+                <span class="shop-card__tag">Popular</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Morning Ritual</h3>
+                  <span class="shop-card__price">680 ETB</span>
+                </div>
+                <p class="shop-card__desc">A lively medium-light roast perfect for starting your day. Fruity acidity with honey sweetness.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Medium-Light Roast</span>
+                  <span class="shop-card__badge">Yirgacheffe</span>
+                  <span class="shop-card__badge">250g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.6 <span class="shop-card__rating-count">(158)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="shop-card" data-category="blend">
+              <div class="shop-card__image">
+                <img src="/images/product-blend.jpg" alt="Ceremony Special" />
+                <span class="shop-card__tag">Limited Edition</span>
+              </div>
+              <div class="shop-card__body">
+                <div class="shop-card__top">
+                  <h3 class="shop-card__name">Ceremony Special</h3>
+                  <span class="shop-card__price">1100 ETB</span>
+                </div>
+                <p class="shop-card__desc">Crafted to honor the Ethiopian coffee ceremony tradition. Complex, aromatic, and unforgettable.</p>
+                <div class="shop-card__meta">
+                  <span class="shop-card__badge">Medium-Dark Roast</span>
+                  <span class="shop-card__badge">Gera &amp; Yirgacheffe</span>
+                  <span class="shop-card__badge">500g</span>
+                </div>
+                <div class="shop-card__footer">
+                  <div class="shop-card__rating">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    5.0 <span class="shop-card__rating-count">(42)</span>
+                  </div>
+                  <button class="shop-card__add">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ==================== CONTACT PAGE ==================== -->
+  <div data-page="contact">
+    <main>
+      <!-- Contact Hero -->
+      <section class="contact-hero">
+        <div class="contact-hero__content">
+          <h1 class="contact-hero__title">Get in Touch</h1>
+          <p class="contact-hero__desc">Have a question about our coffee or want to explore a partnership? We'd love to hear from you.</p>
+        </div>
+      </section>
+
+      <!-- Contact Content -->
+      <section class="section">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Form -->
+            <div class="contact-form">
+              <h2>Send Us a Message</h2>
+              <p>Fill out the form below and we'll respond within 24 hours.</p>
+              <form onsubmit="handleContactSubmit(event)">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" name="firstName" type="text" required placeholder="Your first name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" name="lastName" type="text" required placeholder="Your last name" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                </div>
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <select id="subject" name="subject" required>
+                    <option value="" disabled selected>Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="order">Order Question</option>
+                    <option value="wholesale">Wholesale Partnership</option>
+                    <option value="feedback">Feedback</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" required rows="5" placeholder="Tell us how we can help..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <!-- Info -->
+            <div class="contact-info">
+              <h2>Contact Information</h2>
+              <p>Reach out to us through any of the following channels.</p>
+              <div class="contact-info-list">
+                <div class="contact-info-item">
+                  <div class="contact-info-item__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <div>
+                    <h3>Phone</h3>
+                    <p>0921 555 888</p>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-item__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div>
+                    <h3>Location</h3>
+                    <p>Addis Ababa, Ethiopia</p>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-item__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div>
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <div class="contact-info-item__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+                  </div>
+                  <div>
+                    <h3>Our Origins</h3>
+                    <p>Gera Region</p>
+                    <p>Yirgacheffe Region</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-map">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-fg)"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <p class="contact-map__title">Addis Ababa, Ethiopia</p>
+                  <p class="contact-map__sub">Garfe Coffee Headquarters</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <a href="#" class="footer__brand-name" onclick="showPage('home'); return false;">GARFE</a>
+          <p class="footer__brand-desc">Proudly Ethiopian coffee company with roots stretching back nearly a century. Honoring the past while brewing for the future.</p>
+        </div>
+        <div>
+          <h3 class="footer__heading">Quick Links</h3>
+          <ul class="footer__list">
+            <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+            <li><a href="#" onclick="showPage('about'); return false;">About Us</a></li>
+            <li><a href="#" onclick="showPage('shop'); return false;">Shop</a></li>
+            <li><a href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__heading">Our Origins</h3>
+          <ul class="footer__list">
+            <li class="footer__list-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+              Yirgacheffe Region
+            </li>
+            <li class="footer__list-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+              Gera Region
+            </li>
+            <li class="footer__list-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Addis Ababa, Ethiopia
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__heading">Contact</h3>
+          <ul class="footer__list">
+            <li class="footer__list-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              0921 555 888
+            </li>
+            <li>Addis Ababa, Ethiopia</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2026 Garfe Coffee Company. All rights reserved. Established 1930 E.C.
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    function showPage(pageName) {
+      // Hide all pages
+      document.querySelectorAll('[data-page]').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      // Show selected page
+      var page = document.querySelector('[data-page="' + pageName + '"]');
+      if (page) {
+        page.classList.add('active');
+      }
+      // Update nav links
+      document.querySelectorAll('.navbar__link').forEach(function(link) {
+        link.classList.remove('navbar__link--active');
+        if (link.getAttribute('data-nav') === pageName) {
+          link.classList.add('navbar__link--active');
+        }
+      });
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    function filterProducts(category) {
+      var cards = document.querySelectorAll('.shop-card');
+      var count = 0;
+      cards.forEach(function(card) {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = '';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('product-count').textContent = count + (count === 1 ? ' product' : ' products');
+
+      // Update active button
+      document.querySelectorAll('.shop-filter-btn').forEach(function(btn) {
+        btn.classList.remove('shop-filter-btn--active');
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('shop-filter-btn--active');
+        }
+      });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      var form = e.target;
+      form.innerHTML = '<div style="text-align:center;padding:64px 24px;"><div style="width:64px;height:64px;display:inline-flex;align-items:center;justify-content:center;background:rgba(181,101,29,0.1);border-radius:50%;margin-bottom:24px;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div><h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:700;color:var(--fg);">Thank You!</h3><p style="margin-top:12px;font-size:0.9rem;color:var(--muted-fg);max-width:320px;margin-left:auto;margin-right:auto;">Your message has been received. We\'ll get back to you as soon as possible.</p></div>';
+    }
+
+    function toggleMobileMenu() {
+      // Simple mobile menu toggle for the HTML version
+      var links = document.querySelector('.navbar__links');
+      if (links.style.display === 'flex') {
+        links.style.display = '';
+      } else {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '100%';
+        links.style.left = '0';
+        links.style.right = '0';
+        links.style.background = 'var(--bg)';
+        links.style.padding = '16px 24px';
+        links.style.borderBottom = '1px solid var(--border)';
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Garfe Coffee</title>
+  <meta name="description" content="Learn about Garfe Coffee's nearly century-long heritage of cultivating and trading the finest Ethiopian coffee from Gera and Yirgacheffe regions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f3ede4; --fg: #1f1a17; --card: #eae3d8; --primary: #5c3317;
+      --primary-fg: #f3ede4; --secondary: #e0d5c6; --secondary-fg: #2a2320;
+      --muted-fg: #76695e; --accent: #a05a2c; --accent-fg: #f3ede4; --border: #cfc3b4;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    .text-balance { text-wrap: balance; }
+
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(31,26,23,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(243,237,228,0.1); }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+    .navbar-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--bg); letter-spacing: 0.05em; }
+    .navbar-logo span { color: var(--accent); }
+    .navbar-links { display: flex; gap: 32px; list-style: none; }
+    .navbar-links a { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(243,237,228,0.7); transition: color 0.2s; }
+    .navbar-links a:hover, .navbar-links a.active { color: var(--bg); }
+
+    .section { padding: 96px 0; }
+    .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted-fg); margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; line-height: 1.15; color: var(--fg); }
+    .text-center { text-align: center; }
+    .bg-secondary { background: var(--secondary); }
+
+    .about-hero { position: relative; min-height: 60vh; display: flex; align-items: center; overflow: hidden; background: #1a1410; }
+    .about-hero-bg { position: absolute; inset: 0; background: url('/images/coffee-farm.jpg') center/cover no-repeat; }
+    .about-hero-overlay { position: absolute; inset: 0; background: rgba(31,26,23,0.6); }
+    .about-hero-content { position: relative; z-index: 2; padding: 160px 0 80px; }
+
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .mission-img { aspect-ratio: 1; overflow: hidden; }
+    .mission-img img { width: 100%; height: 100%; object-fit: cover; }
+    .check-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .check-list li::before { content: ''; display: inline-block; width: 20px; height: 20px; flex-shrink: 0; border-radius: 50%; border: 2px solid var(--accent); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a05a2c' stroke-width='3'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center/14px no-repeat; }
+
+    .timeline-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 32px; margin-top: 48px; }
+    .timeline-card { border: 1px solid var(--border); background: var(--card); padding: 32px; }
+    .timeline-badge { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .timeline-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--primary-fg); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+    .timeline-year { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); }
+    .timeline-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .timeline-card p { font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px; margin-top: 48px; }
+    .value-card { text-align: center; }
+    .value-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--secondary); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 28px; }
+    .value-title { font-family: 'Playfair Display', Georgia, serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .value-desc { font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+
+    .quote-section { background: var(--primary); padding: 96px 0; }
+    .quote-section blockquote { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(20px, 3vw, 30px); font-weight: 500; line-height: 1.6; color: var(--primary-fg); text-align: center; max-width: 720px; margin: 0 auto; }
+    .quote-author { margin-top: 32px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(243,237,228,0.6); text-align: center; }
+
+    .footer { background: var(--fg); padding: 64px 0 32px; color: rgba(243,237,228,0.7); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--bg); }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { margin-top: 12px; font-size: 14px; line-height: 1.6; max-width: 280px; }
+    .footer h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--bg); margin-bottom: 20px; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer ul a { font-size: 14px; transition: color 0.2s; }
+    .footer ul a:hover { color: var(--bg); }
+    .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(243,237,228,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(243,237,228,0.4); }
+
+    @media (max-width: 768px) {
+      .navbar-links { display: none; }
+      .mission-grid, .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/html/index.html" class="navbar-logo">GARFE<span>.</span></a>
+      <ul class="navbar-links">
+        <li><a href="/html/index.html">Home</a></li>
+        <li><a href="/html/about.html" class="active">About</a></li>
+        <li><a href="/html/shop.html">Shop</a></li>
+        <li><a href="/html/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
+    <div class="container">
+      <div class="about-hero-content">
+        <p style="font-size:11px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(243,237,228,0.6);margin-bottom:16px;">Our Story</p>
+        <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--bg);" class="text-balance">About Garfe Coffee</h1>
+        <p style="margin-top:24px;font-size:18px;color:rgba(243,237,228,0.8);max-width:560px;line-height:1.6;">A proudly Ethiopian coffee company with roots that stretch back nearly a century.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="container">
+      <div class="mission-grid">
+        <div>
+          <p class="section-label">Our Mission</p>
+          <h2 class="section-title text-balance">Bringing the Finest Ethiopian Coffee to Discerning Palates</h2>
+          <p style="margin-top:32px;font-size:15px;color:var(--muted-fg);line-height:1.7;">
+            At Garfe Coffee, our mission is simple yet profound: to bring the world's finest Ethiopian coffee to discerning palates while creating sustainable livelihoods for the farmers who grow it.
+          </p>
+          <p style="margin-top:16px;font-size:15px;color:var(--muted-fg);line-height:1.7;">
+            Exceptional coffee begins with exceptional farming. We work directly with smallholder farmers in the Gera region of Ethiopia, one of the historic birthplaces of coffee cultivation, dating back over a thousand years.
+          </p>
+          <ul class="check-list">
+            <li>Fair and transparent compensation</li>
+            <li>Sustainable farming practices</li>
+            <li>Consistent, high-quality coffee beans</li>
+            <li>Ethical sourcing from farm to cup</li>
+          </ul>
+        </div>
+        <div class="mission-img">
+          <img src="/images/about-heritage.jpg" alt="Coffee heritage in Ethiopia" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section bg-secondary">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px;">
+        <p class="section-label">Our Journey</p>
+        <h2 class="section-title text-balance">A Legacy Through Time</h2>
+      </div>
+      <div class="timeline-grid">
+        <div class="timeline-card">
+          <div class="timeline-badge">
+            <span class="timeline-num">1</span>
+            <span class="timeline-year">1930 E.C.</span>
+          </div>
+          <h3>The Beginning</h3>
+          <p>Our grandparents began cultivating and trading coffee as a family tradition in the Ethiopian highlands.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-badge">
+            <span class="timeline-num">2</span>
+            <span class="timeline-year">1960s E.C.</span>
+          </div>
+          <h3>Growing Roots</h3>
+          <p>Our father expanded the family legacy by selling Yirgacheffe coffee beans in Addis Ababa, bringing highland coffee to the city.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-badge">
+            <span class="timeline-num">3</span>
+            <span class="timeline-year">2008 E.C.</span>
+          </div>
+          <h3>Garfe Coffee Founded</h3>
+          <p>Building on generations of knowledge, Garfe Coffee Company was officially established to serve the Ethiopian market.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-badge">
+            <span class="timeline-num">4</span>
+            <span class="timeline-year">Today</span>
+          </div>
+          <h3>Brewing the Future</h3>
+          <p>We continue to honor our heritage while innovating and expanding, committed to quality, sustainability, and authentic Ethiopian coffee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px;">
+        <p class="section-label">What We Believe</p>
+        <h2 class="section-title text-balance">Our Core Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">&#9749;</div>
+          <h3 class="value-title">Quality Focus</h3>
+          <p class="value-desc">Hand-selected, carefully processed beans at every stage.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#9829;</div>
+          <h3 class="value-title">Direct Trade</h3>
+          <p class="value-desc">Fair and transparent compensation for our farming partners.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#9752;</div>
+          <h3 class="value-title">Sustainability</h3>
+          <p class="value-desc">Sustainable farming practices preserving land for generations.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#9673;</div>
+          <h3 class="value-title">Authentic Origins</h3>
+          <p class="value-desc">Proudly sourced from Gera and Yirgacheffe regions of Ethiopia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERITAGE QUOTE -->
+  <section class="quote-section">
+    <div class="container">
+      <blockquote>&ldquo;Coffee is not just our business; it is our inheritance. From farm knowledge passed through generations to modern market practices, Garfe Coffee blends tradition and innovation.&rdquo;</blockquote>
+      <p class="quote-author">The Garfe Family</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">GARFE<span>.</span></div>
+          <p class="footer-desc">A proudly Ethiopian coffee company with roots stretching back nearly a century. Quality, heritage, and sustainability.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/html/index.html">Home</a></li>
+            <li><a href="/html/about.html">About</a></li>
+            <li><a href="/html/shop.html">Shop</a></li>
+            <li><a href="/html/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coffee</h4>
+          <ul>
+            <li><a href="/html/shop.html">Yirgacheffe</a></li>
+            <li><a href="/html/shop.html">Gera Highland</a></li>
+            <li><a href="/html/shop.html">Heritage Blend</a></li>
+            <li><a href="/html/shop.html">Reserve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0921555888">0921 555 888</a></li>
+            <li><a href="#">Addis Ababa, Ethiopia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Garfe Coffee. All rights reserved.</span>
+        <span>Premium Ethiopian Coffee Since 1930 E.C.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

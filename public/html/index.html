@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#5C3317" />
+  <title>Garfe Coffee | Premium Ethiopian Coffee Since 1930</title>
+  <meta name="description" content="Garfe Coffee is a proudly Ethiopian coffee company with roots stretching back nearly a century. Discover hand-selected beans from Gera and Yirgacheffe regions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f3ede4;
+      --fg: #1f1a17;
+      --card: #eae3d8;
+      --primary: #5c3317;
+      --primary-fg: #f3ede4;
+      --secondary: #e0d5c6;
+      --secondary-fg: #2a2320;
+      --muted: #d9cfc3;
+      --muted-fg: #76695e;
+      --accent: #a05a2c;
+      --accent-fg: #f3ede4;
+      --border: #cfc3b4;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    .uppercase { text-transform: uppercase; }
+    .tracking-wide { letter-spacing: 0.1em; }
+    .tracking-wider { letter-spacing: 0.2em; }
+    .tracking-widest { letter-spacing: 0.3em; }
+    .text-balance { text-wrap: balance; }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(31,26,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(243,237,228,0.1);
+    }
+    .navbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .navbar-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px; font-weight: 700; color: var(--bg);
+      letter-spacing: 0.05em;
+    }
+    .navbar-logo span { color: var(--accent); }
+    .navbar-links { display: flex; gap: 32px; list-style: none; }
+    .navbar-links a {
+      font-size: 12px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.15em; color: rgba(243,237,228,0.7);
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover, .navbar-links a.active { color: var(--bg); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden; background: #1a1410;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/hero-coffee.jpg') center/cover no-repeat;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(31,26,23,0.6); }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; padding: 160px 0 80px; }
+    .hero-label {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.3em;
+      color: rgba(243,237,228,0.7); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 700; line-height: 1.05; color: var(--bg);
+    }
+    .hero p { margin-top: 24px; font-size: 18px; line-height: 1.6; color: rgba(243,237,228,0.8); max-width: 480px; }
+    .hero-buttons { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 32px; font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-accent { background: var(--accent); color: var(--accent-fg); }
+    .btn-accent:hover { opacity: 0.9; }
+    .btn-outline {
+      background: transparent; color: var(--bg);
+      border: 1px solid rgba(243,237,228,0.3);
+    }
+    .btn-outline:hover { background: rgba(243,237,228,0.1); }
+    .btn-primary { background: var(--primary); color: var(--primary-fg); }
+    .btn-primary:hover { opacity: 0.9; }
+    .hero-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      border-top: 1px solid rgba(243,237,228,0.1);
+      background: rgba(31,26,23,0.3); backdrop-filter: blur(8px);
+    }
+    .hero-bar-inner {
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 16px;
+      max-width: 1200px; margin: 0 auto; padding: 16px 24px;
+    }
+    .hero-bar-item { display: flex; align-items: center; gap: 8px; }
+    .hero-bar-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(243,237,228,0.5); }
+    .hero-bar-item .value { font-size: 14px; font-weight: 500; color: var(--bg); }
+
+    /* ---------- SECTIONS ---------- */
+    .section { padding: 96px 0; }
+    .section-label {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em;
+      color: var(--muted-fg); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+      line-height: 1.15; color: var(--fg);
+    }
+    .section-title-light { color: var(--bg); }
+    .text-center { text-align: center; }
+
+    /* ---------- FEATURED PRODUCTS ---------- */
+    .products-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px; margin-top: 48px;
+    }
+    .product-card {
+      border: 1px solid var(--border); background: var(--card);
+      overflow: hidden; transition: box-shadow 0.3s;
+    }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .product-img {
+      position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--secondary);
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-tag {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(31,26,23,0.9); color: var(--bg);
+      font-size: 10px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.15em; padding: 4px 12px;
+    }
+    .product-info { padding: 24px; }
+    .product-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .product-name { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 600; }
+    .product-price { font-size: 18px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .product-desc { margin-top: 8px; font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+    .product-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .product-meta span {
+      background: var(--secondary); padding: 4px 10px;
+      font-size: 11px; color: var(--secondary-fg);
+    }
+    .product-footer {
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .product-rating { font-size: 14px; font-weight: 500; }
+    .product-rating .star { color: var(--accent); }
+    .product-rating .count { font-size: 12px; color: var(--muted-fg); margin-left: 4px; }
+
+    /* ---------- HERITAGE ---------- */
+    .heritage-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; margin-top: 48px;
+    }
+    .heritage-img { aspect-ratio: 1; overflow: hidden; }
+    .heritage-img img { width: 100%; height: 100%; object-fit: cover; }
+    .stat-row { display: flex; gap: 40px; margin-top: 40px; }
+    .stat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 40px; font-weight: 700; color: var(--accent);
+    }
+    .stat-label { font-size: 12px; color: var(--muted-fg); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* ---------- WHY GARFE ---------- */
+    .bg-secondary { background: var(--secondary); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 32px; margin-top: 48px;
+    }
+    .feature-card { text-align: center; padding: 32px; }
+    .feature-icon {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--bg);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; font-size: 28px;
+    }
+    .feature-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px; font-weight: 600; margin-bottom: 8px;
+    }
+    .feature-desc { font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      position: relative; padding: 96px 0; overflow: hidden;
+      background: url('/images/coffee-beans-close.jpg') center/cover no-repeat;
+    }
+    .cta-overlay { position: absolute; inset: 0; background: rgba(31,26,23,0.8); }
+    .cta-content { position: relative; z-index: 2; text-align: center; max-width: 640px; margin: 0 auto; }
+    .cta-content h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: var(--bg);
+    }
+    .cta-content p { margin-top: 16px; font-size: 16px; color: rgba(243,237,228,0.75); }
+    .cta-buttons { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+    /* ---------- QUOTE ---------- */
+    .quote-section { background: var(--primary); padding: 96px 0; }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(20px, 3vw, 30px); font-weight: 500;
+      line-height: 1.6; color: var(--primary-fg); text-align: center;
+      max-width: 720px; margin: 0 auto;
+    }
+    .quote-author {
+      margin-top: 32px; font-size: 12px; text-transform: uppercase;
+      letter-spacing: 0.2em; color: rgba(243,237,228,0.6); text-align: center;
+    }
+
+    /* ---------- ABOUT PAGE ---------- */
+    .about-hero {
+      position: relative; min-height: 60vh; display: flex; align-items: center;
+      overflow: hidden; background: #1a1410;
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/coffee-farm.jpg') center/cover no-repeat;
+    }
+    .mission-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .check-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .check-list li { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .check-list li::before {
+      content: ''; display: inline-block; width: 20px; height: 20px; flex-shrink: 0;
+      border-radius: 50%; border: 2px solid var(--accent);
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a05a2c' stroke-width='3'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E") center/14px no-repeat;
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 32px; margin-top: 48px;
+    }
+    .timeline-card {
+      border: 1px solid var(--border); background: var(--card); padding: 32px;
+    }
+    .timeline-badge {
+      display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .timeline-num {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--primary);
+      color: var(--primary-fg); display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+    }
+    .timeline-year { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); }
+    .timeline-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px; font-weight: 600; margin-bottom: 8px;
+    }
+    .timeline-card p { font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+
+    /* ---------- VALUES ---------- */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 32px; margin-top: 48px;
+    }
+    .value-card { text-align: center; }
+    .value-icon {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--secondary);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; font-size: 28px;
+    }
+
+    /* ---------- SHOP ---------- */
+    .shop-hero { background: var(--primary); padding: 160px 0 64px; }
+    .shop-hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 60px); font-weight: 700; color: var(--primary-fg);
+    }
+    .shop-hero p { margin-top: 16px; font-size: 16px; color: rgba(243,237,228,0.75); max-width: 480px; }
+    .filter-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .filter-btn {
+      padding: 10px 20px; font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--fg); cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary); color: var(--primary-fg); border-color: var(--primary);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-hero {
+      position: relative; min-height: 40vh; display: flex; align-items: center;
+      overflow: hidden; background: #1a1410;
+    }
+    .contact-hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/coffee-beans-close.jpg') center/cover no-repeat;
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--fg);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px; font-size: 14px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--fg); font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: none; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .info-item { display: flex; gap: 16px; }
+    .info-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--secondary); display: flex;
+      align-items: center; justify-content: center; font-size: 20px;
+    }
+    .info-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; }
+    .info-text { font-size: 14px; color: var(--muted-fg); margin-top: 4px; }
+
+    .map-placeholder {
+      margin-top: 48px; aspect-ratio: 4/3; border: 1px solid var(--border);
+      background: var(--secondary); display: flex; align-items: center;
+      justify-content: center; text-align: center;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer { background: var(--fg); padding: 64px 0 32px; color: rgba(243,237,228,0.7); }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px; font-weight: 700; color: var(--bg);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { margin-top: 12px; font-size: 14px; line-height: 1.6; max-width: 280px; }
+    .footer h4 {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--bg); margin-bottom: 20px;
+    }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer ul a { font-size: 14px; transition: color 0.2s; }
+    .footer ul a:hover { color: var(--bg); }
+    .footer-bottom {
+      margin-top: 48px; padding-top: 24px;
+      border-top: 1px solid rgba(243,237,228,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: rgba(243,237,228,0.4);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .navbar-links { display: none; }
+      .heritage-grid, .mission-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+      .stat-row { gap: 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/html/index.html" class="navbar-logo">GARFE<span>.</span></a>
+      <ul class="navbar-links">
+        <li><a href="/html/index.html" class="active">Home</a></li>
+        <li><a href="/html/about.html">About</a></li>
+        <li><a href="/html/shop.html">Shop</a></li>
+        <li><a href="/html/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-label">Established 1930 E.C.</p>
+        <h1 class="text-balance">Exceptional Coffee, Rooted in Heritage</h1>
+        <p>From the highlands of Ethiopia to your cup. Nearly a century of passion, tradition, and the finest hand-selected beans.</p>
+        <div class="hero-buttons">
+          <a href="/html/shop.html" class="btn btn-accent">Explore Our Coffee &rarr;</a>
+          <a href="/html/about.html" class="btn btn-outline">Our Story</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bar">
+      <div class="hero-bar-inner">
+        <div class="hero-bar-item">
+          <span class="label">Origin</span>
+          <span class="value">Gera & Yirgacheffe</span>
+        </div>
+        <div class="hero-bar-item">
+          <span class="label">Heritage</span>
+          <span class="value">Nearly 100 Years</span>
+        </div>
+        <div class="hero-bar-item">
+          <span class="label">Approach</span>
+          <span class="value">Direct Trade</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Our Collection</p>
+      <h2 class="section-title text-balance">Featured Coffee</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-yirgacheffe.jpg" alt="Yirgacheffe Select coffee" />
+            <span class="product-tag">Best Seller</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Yirgacheffe Select</span>
+              <span class="product-price">850 ETB</span>
+            </div>
+            <p class="product-desc">Bright and floral with vibrant citrus notes and a clean, tea-like finish.</p>
+            <div class="product-meta">
+              <span>Light Roast</span><span>Yirgacheffe</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.9 <span class="count">(128)</span></span>
+              <a href="/html/shop.html" class="btn btn-primary" style="padding:8px 16px;font-size:11px;">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-gera.jpg" alt="Gera Highland coffee" />
+            <span class="product-tag">Single Origin</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Gera Highland</span>
+              <span class="product-price">780 ETB</span>
+            </div>
+            <p class="product-desc">Full-bodied with rich chocolate undertones and wild berry sweetness.</p>
+            <div class="product-meta">
+              <span>Medium Roast</span><span>Gera</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.8 <span class="count">(96)</span></span>
+              <a href="/html/shop.html" class="btn btn-primary" style="padding:8px 16px;font-size:11px;">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-blend.jpg" alt="Heritage Blend coffee" />
+            <span class="product-tag">Signature</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Heritage Blend</span>
+              <span class="product-price">720 ETB</span>
+            </div>
+            <p class="product-desc">Our signature blend marrying the brightness of Yirgacheffe with the depth of Gera beans.</p>
+            <div class="product-meta">
+              <span>Medium Roast</span><span>Blend</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.7 <span class="count">(204)</span></span>
+              <a href="/html/shop.html" class="btn btn-primary" style="padding:8px 16px;font-size:11px;">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERITAGE -->
+  <section class="section bg-secondary">
+    <div class="container">
+      <div class="heritage-grid">
+        <div>
+          <p class="section-label">Our Heritage</p>
+          <h2 class="section-title text-balance">A Legacy of Ethiopian Coffee Excellence</h2>
+          <p style="margin-top:24px;font-size:15px;color:var(--muted-fg);line-height:1.7;">
+            Coffee is not just our business; it is our inheritance. From farm knowledge passed through generations to modern market practices, Garfe Coffee blends tradition and innovation to deliver authentic Ethiopian coffee experiences.
+          </p>
+          <div class="stat-row">
+            <div>
+              <div class="stat-number">90+</div>
+              <div class="stat-label">Years of Heritage</div>
+            </div>
+            <div>
+              <div class="stat-number">2</div>
+              <div class="stat-label">Growing Regions</div>
+            </div>
+            <div>
+              <div class="stat-number">3</div>
+              <div class="stat-label">Generations</div>
+            </div>
+          </div>
+        </div>
+        <div class="heritage-img">
+          <img src="/images/about-heritage.jpg" alt="Ethiopian coffee heritage" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY GARFE -->
+  <section class="section">
+    <div class="container text-center">
+      <p class="section-label">Why Garfe Coffee</p>
+      <h2 class="section-title text-balance">What Sets Us Apart</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9752;</div>
+          <h3 class="feature-title">Nearly 100 Years</h3>
+          <p class="feature-desc">Nearly a century of coffee heritage passed down through three generations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9829;</div>
+          <h3 class="feature-title">Direct Relationships</h3>
+          <p class="feature-desc">We work directly with smallholder farmers, ensuring fair trade and quality.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9673;</div>
+          <h3 class="feature-title">Authentic Origins</h3>
+          <p class="feature-desc">Sourced exclusively from the Gera and Yirgacheffe regions of Ethiopia.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#10003;</div>
+          <h3 class="feature-title">Trusted Quality</h3>
+          <p class="feature-desc">Hand-selected, carefully processed beans with quality control at every stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-overlay"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="text-balance">Taste the Heritage of Ethiopian Coffee</h2>
+        <p>Experience the rich flavors that nearly a century of tradition has perfected. From Gera highlands to Yirgacheffe valleys.</p>
+        <div class="cta-buttons">
+          <a href="/html/shop.html" class="btn btn-accent">Shop Now &rarr;</a>
+          <a href="/html/contact.html" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">GARFE<span>.</span></div>
+          <p class="footer-desc">A proudly Ethiopian coffee company with roots stretching back nearly a century. Quality, heritage, and sustainability.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/html/index.html">Home</a></li>
+            <li><a href="/html/about.html">About</a></li>
+            <li><a href="/html/shop.html">Shop</a></li>
+            <li><a href="/html/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coffee</h4>
+          <ul>
+            <li><a href="/html/shop.html">Yirgacheffe</a></li>
+            <li><a href="/html/shop.html">Gera Highland</a></li>
+            <li><a href="/html/shop.html">Heritage Blend</a></li>
+            <li><a href="/html/shop.html">Reserve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0921555888">0921 555 888</a></li>
+            <li><a href="#">Addis Ababa, Ethiopia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Garfe Coffee. All rights reserved.</span>
+        <span>Premium Ethiopian Coffee Since 1930 E.C.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

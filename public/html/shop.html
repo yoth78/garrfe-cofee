@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | Garfe Coffee</title>
+  <meta name="description" content="Browse and shop our collection of premium Ethiopian coffee beans from Gera and Yirgacheffe regions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f3ede4; --fg: #1f1a17; --card: #eae3d8; --primary: #5c3317;
+      --primary-fg: #f3ede4; --secondary: #e0d5c6; --secondary-fg: #2a2320;
+      --muted-fg: #76695e; --accent: #a05a2c; --accent-fg: #f3ede4; --border: #cfc3b4;
+    }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(31,26,23,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(243,237,228,0.1); }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+    .navbar-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--bg); letter-spacing: 0.05em; }
+    .navbar-logo span { color: var(--accent); }
+    .navbar-links { display: flex; gap: 32px; list-style: none; }
+    .navbar-links a { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(243,237,228,0.7); transition: color 0.2s; }
+    .navbar-links a:hover, .navbar-links a.active { color: var(--bg); }
+
+    .shop-hero { background: var(--primary); padding: 160px 0 64px; }
+    .shop-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; color: var(--primary-fg); }
+    .shop-hero p { margin-top: 16px; font-size: 16px; color: rgba(243,237,228,0.75); max-width: 480px; }
+
+    .section { padding: 64px 0 96px; }
+    .filter-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .filter-btn { padding: 10px 20px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; }
+    .product-card { border: 1px solid var(--border); background: var(--card); overflow: hidden; transition: box-shadow 0.3s; }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .product-img { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--secondary); }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-tag { position: absolute; top: 16px; left: 16px; background: rgba(31,26,23,0.9); color: var(--bg); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; padding: 4px 12px; }
+    .product-info { padding: 24px; }
+    .product-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .product-name { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 600; }
+    .product-price { font-size: 18px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .product-desc { margin-top: 8px; font-size: 14px; color: var(--muted-fg); line-height: 1.6; }
+    .product-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .product-meta span { background: var(--secondary); padding: 4px 10px; font-size: 11px; color: var(--secondary-fg); }
+    .product-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .product-rating { font-size: 14px; font-weight: 500; }
+    .product-rating .star { color: var(--accent); }
+    .product-rating .count { font-size: 12px; color: var(--muted-fg); margin-left: 4px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; background: var(--primary); color: var(--primary-fg); border: none; cursor: pointer; transition: opacity 0.2s; font-family: inherit; }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .footer { background: var(--fg); padding: 64px 0 32px; color: rgba(243,237,228,0.7); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--bg); }
+    .footer-logo span { color: var(--accent); }
+    .footer-desc { margin-top: 12px; font-size: 14px; line-height: 1.6; max-width: 280px; }
+    .footer h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--bg); margin-bottom: 20px; }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer ul a { font-size: 14px; transition: color 0.2s; }
+    .footer ul a:hover { color: var(--bg); }
+    .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(243,237,228,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(243,237,228,0.4); }
+
+    @media (max-width: 768px) {
+      .navbar-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/html/index.html" class="navbar-logo">GARFE<span>.</span></a>
+      <ul class="navbar-links">
+        <li><a href="/html/index.html">Home</a></li>
+        <li><a href="/html/about.html">About</a></li>
+        <li><a href="/html/shop.html" class="active">Shop</a></li>
+        <li><a href="/html/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SHOP HERO -->
+  <section class="shop-hero">
+    <div class="container">
+      <h1>Our Coffee Collection</h1>
+      <p>Explore our hand-selected Ethiopian coffees, sourced directly from the highlands of Gera and Yirgacheffe.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar">
+        <button class="filter-btn active" type="button">All Coffee</button>
+        <button class="filter-btn" type="button">Single Origin</button>
+        <button class="filter-btn" type="button">Blends</button>
+        <span style="margin-left:auto;font-size:14px;color:var(--muted-fg);">6 products</span>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-yirgacheffe.jpg" alt="Yirgacheffe Select coffee" />
+            <span class="product-tag">Best Seller</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Yirgacheffe Select</span>
+              <span class="product-price">850 ETB</span>
+            </div>
+            <p class="product-desc">Bright and floral with vibrant citrus notes and a clean, tea-like finish. Sourced from the renowned Yirgacheffe region.</p>
+            <div class="product-meta">
+              <span>Light Roast</span><span>Yirgacheffe</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.9 <span class="count">(128)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-gera.jpg" alt="Gera Highland coffee" />
+            <span class="product-tag">Single Origin</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Gera Highland</span>
+              <span class="product-price">780 ETB</span>
+            </div>
+            <p class="product-desc">Full-bodied with rich chocolate undertones and wild berry sweetness. From the misty highlands of Gera.</p>
+            <div class="product-meta">
+              <span>Medium Roast</span><span>Gera</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.8 <span class="count">(96)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-blend.jpg" alt="Heritage Blend coffee" />
+            <span class="product-tag">Signature</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Heritage Blend</span>
+              <span class="product-price">720 ETB</span>
+            </div>
+            <p class="product-desc">Our signature blend marrying the brightness of Yirgacheffe with the depth of Gera beans. Perfectly balanced.</p>
+            <div class="product-meta">
+              <span>Medium Roast</span><span>Blend</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.7 <span class="count">(204)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-reserve.jpg" alt="Reserve Dark Roast coffee" />
+            <span class="product-tag">Premium</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Reserve Dark Roast</span>
+              <span class="product-price">920 ETB</span>
+            </div>
+            <p class="product-desc">Bold and intense with smoky caramel notes and a velvety finish. For those who prefer a deeper roast.</p>
+            <div class="product-meta">
+              <span>Dark Roast</span><span>Gera</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.9 <span class="count">(73)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-yirgacheffe.jpg" alt="Morning Ritual coffee" />
+            <span class="product-tag">Popular</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Morning Ritual</span>
+              <span class="product-price">680 ETB</span>
+            </div>
+            <p class="product-desc">A lively medium-light roast perfect for starting your day. Fruity acidity with honey sweetness.</p>
+            <div class="product-meta">
+              <span>Medium-Light Roast</span><span>Yirgacheffe</span><span>250g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 4.6 <span class="count">(158)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="/images/product-blend.jpg" alt="Ceremony Special coffee" />
+            <span class="product-tag">Limited Edition</span>
+          </div>
+          <div class="product-info">
+            <div class="product-header">
+              <span class="product-name">Ceremony Special</span>
+              <span class="product-price">1100 ETB</span>
+            </div>
+            <p class="product-desc">Crafted to honor the Ethiopian coffee ceremony tradition. Complex, aromatic, and unforgettable.</p>
+            <div class="product-meta">
+              <span>Medium-Dark Roast</span><span>Gera & Yirgacheffe</span><span>500g</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-rating"><span class="star">&#9733;</span> 5.0 <span class="count">(42)</span></span>
+              <button class="btn-primary" type="button">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">GARFE<span>.</span></div>
+          <p class="footer-desc">A proudly Ethiopian coffee company with roots stretching back nearly a century. Quality, heritage, and sustainability.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/html/index.html">Home</a></li>
+            <li><a href="/html/about.html">About</a></li>
+            <li><a href="/html/shop.html">Shop</a></li>
+            <li><a href="/html/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coffee</h4>
+          <ul>
+            <li><a href="/html/shop.html">Yirgacheffe</a></li>
+            <li><a href="/html/shop.html">Gera Highland</a></li>
+            <li><a href="/html/shop.html">Heritage Blend</a></li>
+            <li><a href="/html/shop.html">Reserve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0921555888">0921 555 888</a></li>
+            <li><a href="#">Addis Ababa, Ethiopia</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Garfe Coffee. All rights reserved.</span>
+        <span>Premium Ethiopian Coffee Since 1930 E.C.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
